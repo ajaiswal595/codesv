@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.ca.codesv'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven{
+        url 'http://ca.bintray.com/sv'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.ca.codesv:codesv-dist-jar:1.2.0'
+}
