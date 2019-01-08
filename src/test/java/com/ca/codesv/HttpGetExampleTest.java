@@ -43,7 +43,34 @@ public class HttpGetExampleTest {
 
     }
 
+    @Test
+    public void testHttpGetCallWithVirtualizedService() throws IOException{
+        forGet(URL).doReturn(
+                aMessage(CUSTOM_STATUS_CODE)
+                    .withStringBody(RESPONSE_BODY_GET)
+        );
 
+
+        HttpGet httpGet = new HttpGet(URL);
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+        CloseableHttpResponse httpResponse = httpClient.execute(httpGet);
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader((httpResponse.getEntity().getContent())));
+        StringBuffer response = new StringBuffer();
+        String inputLine;
+
+        while ((inputLine = reader.readLine()) != null){
+            response.append(inputLine);
+        }
+
+        reader.close();
+
+        System.out.println("Response code : "+ httpResponse.getStatusLine().getStatusCode());
+        System.out.println("Response body: "+response.toString());
+
+        Assert.assertEquals(CUSTOM_STATUS_CODE,httpResponse.getStatusLine().getStatusCode());
+
+    }
 
 }
 
