@@ -17,4 +17,5 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'com.ca.codesv:codesv-dist-jar:1.2.0'
+    testCompile group:'org.apache.httpcomponents',name:'httpclient',version: '4.5.3'
 }
